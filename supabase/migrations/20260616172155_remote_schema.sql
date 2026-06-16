@@ -316,7 +316,14 @@ ALTER DEFAULT PRIVILEGES FOR ROLE "postgres" IN SCHEMA "public" GRANT ALL ON TAB
 
 
 
+CREATE TABLE IF NOT EXISTS "public"."users" (
+  "id" uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  "email" text NOT NULL UNIQUE,
+  "name" text,
+  "created_at" timestamptz DEFAULT now()
+);
 
+ALTER TABLE "public"."users" ENABLE ROW LEVEL SECURITY;
 
 
 
